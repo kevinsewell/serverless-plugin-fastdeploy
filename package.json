@@ -1,6 +1,6 @@
 {
   "name": "serverless-plugin-fastdeploy",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Serverless Plugin to perform lightning fast deployments",
   "main": "src/index.js",
   "scripts": {
