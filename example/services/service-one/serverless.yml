@@ -1,0 +1,72 @@
+service: Aronim-Example
+
+plugins:
+ - serverless-plugin-fastdeploy
+ - serverless-python-requirements
+
+provider:
+  name: aws
+  stage: ${opt:stage, "Test"}
+  runtime: python3.6
+  role: DefaultRole
+  deploymentBucket: aronim-serverless
+  environment:
+    HELLO_MESSAGE: Mholo
+
+package:
+  exclude:
+    - "node_modules/**"
+    - "package.json"
+    - "requirements.txt"
+
+custom:
+  fastDeploy:
+    include:
+      ".": service_one/**
+      "../../modules/module-two": module_two/**
+
+functions:
+  Hello:
+    handler: service_one/hello.handle
+    memory: 128
+    events:
+      - http:
+          path: hello/{name}
+          method: get
+          cors: true
+
+resources:
+  Resources:
+    DefaultRole:
+      Type: AWS::IAM::Role
+      Properties:
+        Path: /
+        RoleName: ${self:service}-${self:provider.stage}
+        AssumeRolePolicyDocument:
+          Version: "2012-10-17"
+          Statement:
+            - Effect: Allow
+              Principal:
+                Service:
+                  - lambda.amazonaws.com
+              Action: sts:AssumeRole
+        Policies:
+          - PolicyName: ${self:service}-${self:provider.stage}
+            PolicyDocument:
+              Version: "2012-10-17"
+              Statement:
+                - Effect: Allow
+                  Action:
+                    - logs:CreateLogGroup
+                    - logs:CreateLogStream
+                    - logs:PutLogEvents
+                  Resource: arn:aws:logs:${self:provider.region}:*:log-group:/aws/lambda/*:*:*
+                - Effect: Allow
+                  Action:
+                    - s3:GetObject
+                    - s3:PutObject
+                  Resource: arn:aws:s3:::aronim-serverless/*
+                - Effect: Allow
+                  Action:
+                    - s3:ListBucket
+                  Resource: arn:aws:s3:::aronim-serverless

@@ -1,0 +1,34 @@
+{
+  "name": "serverless-plugin-fastdeploy",
+  "version": "0.0.1",
+  "description": "Serverless Plugin to perform lightning fast deployments",
+  "main": "src/index.js",
+  "scripts": {
+    "lint": "standard src/**",
+    "lint:fix": "standard --fix src/**"
+  },
+  "author": "Kevin W. Sewell",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aronim/serverless-plugin-fastdeploy.git"
+  },
+  "keywords": [
+    "serverless plugin deployments lambdas",
+    "serverless fast deployments",
+    "serverless plugin",
+    "lightning fast deployments",
+    "deployment lambda",
+    "patch deployment"
+  ],
+  "bugs": {
+    "url": "https://github.com/aronim/serverless-plugin-fastdeploy/issues"
+  },
+  "homepage": "https://github.com/aronim/serverless-plugin-fastdeploy",
+  "dependencies": {
+    "@ronomon/base64": "^2.3.0",
+    "archiver": "^2.1.1",
+    "bluebird": "^3.5.1",
+    "fs-extra": "^6.0.1"
+  }
+}
