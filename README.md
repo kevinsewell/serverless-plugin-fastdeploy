@@ -87,21 +87,22 @@ provider:
   ...
   role: DefaultRole
   deploymentBucket: aronim-serverless
-  
-custom:
-  fastDeploy:
-    include:
-      ".": service_one/**
-      "../../modules/module-two": module_two/**
-      
-# OR      
 
 custom:
   fastDeploy:
     include:
       - package_one/**
       - package_two/**
-      
+
+######      
+# OR #      
+###### 
+ 
+custom:
+  fastDeploy:
+    include:
+      ".": service_one/**
+      "../../modules/module-two": module_two/**     
 
 resources:
   Resources:
@@ -145,7 +146,7 @@ Since we are deploying an additional Lambda, there are some neglible cost implic
 the FastDeploy Lambda is 512MB, but this can be increased or decreased using the `custom.fastDelpoy.memory` property.
 
 ## Acknowledgements
-A big thank you to [FidelLimited](https://github.com/FidelLimited/), I blatently plagiarized there WarmUp plugin for the 
+A big thank you to [FidelLimited](https://github.com/FidelLimited/), I blatently plagiarized their WarmUp plugin for the 
 basis of the FastDeploy Lambda :-) As they say "Mimicry highest form of flattery".
 
 
