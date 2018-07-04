@@ -5,7 +5,7 @@ Serverless Fast Deploy Plugin
 [![npm downloads](https://img.shields.io/npm/dm/serverless-plugin-fastdeploy.svg)](https://www.npmjs.com/package/serverless-plugin-fastdeploy)
 [![license](https://img.shields.io/npm/l/serverless-plugin-fastdeploy.svg)](https://raw.githubusercontent.com/aronim/serverless-plugin-fastdeploy/master/LICENSE)
 
-Lightening Fast Serverless Deployments
+Fast Serverless deployments for large packages
 
 **Requirements:**
 * Serverless *v1.12.x* or higher.
@@ -16,7 +16,7 @@ Lightening Fast Serverless Deployments
 I found that while working with Python libraries such Numpy and Pandas, my deploys became very slow and expensive (I 
 work off a mobile data plan) due to the increased package size. This plugin deploys a specialized Lambda always you to 
 only deploy the files that are most likely to change. It does this by merging the incoming files with the latest 
-existing package on S3. So now when I deploy a change, I am sending a few KB across the wire each time, not 60 MB.
+existing package on S3. So now when I deploy a change, I am sending a few KB across the wire each time, not 50 MB.
 
 ### Caveats
 
@@ -28,6 +28,9 @@ previous deployment package without the files described by the `custom.fastDelpo
 can simply append the new files, resulting in an even faster deploy. The unfortunately side effect being that if you 
 change the `custom.fastDelpoy.include` property, you need to do a full deployment before doing your next FastDeploy.
 
+The creation of the base deployment package also means that the first FastDeploy will be slightly slower than subsequent
+deployments.
+
 #### Custom deployment bucket
 
 At the moment this plugin bypasses all of the standard deployment lifecycle stages, so I am not yet able to get hold of 
@@ -38,6 +41,9 @@ configured it via the `provider.deploymentBucket` property.
 
 The FastDeploy Lambda requires the following permissions on the deployment bucket. Either this can be added to the 
 services default role, or you can create a new role and configure it via the `custom.fastDelpoy.role` property.
+
+#### Updates to CloudFormation configuration requires a full deployment
+Much like Serverless's function deployment feature, any updates to the CloudFormation stack requires a full deployment.  
 
 ```yaml
 - Effect: Allow
@@ -76,6 +82,20 @@ sls fastdeploy
 The `custom.fastDelpoy.include` property describes which files to include in the update package, and exclude from the 
 base package. This can be an array if you are just working in single module project, or an object if you are working with a 
 multi-module project.
+
+Available custom properties:
+```yaml
+
+custom:
+  fastDeploy:
+    memorySize: 512    # Optional. Default: 512MB
+    timeout: 30        # Optional. Default: 30sec
+    include:           # Required. No Default
+      - src/*.js       # Example
+    role:              # Optional. Uses service default role if one is provided
+      - FastDeployRole # Example
+
+```
 
 ```yml
 service: ServerlessFastDeployExample

@@ -1,7 +1,7 @@
 {
   "name": "serverless-plugin-fastdeploy",
   "version": "0.0.2",
-  "description": "Serverless Plugin to perform lightning fast deployments",
+  "description": "Fast Serverless deployments for large packages",
   "main": "src/index.js",
   "scripts": {
     "lint": "standard src/**",
@@ -17,7 +17,7 @@
     "serverless plugin deployments lambdas",
     "serverless fast deployments",
     "serverless plugin",
-    "lightning fast deployments",
+    "fast deployments",
     "deployment lambda",
     "patch deployment"
   ],

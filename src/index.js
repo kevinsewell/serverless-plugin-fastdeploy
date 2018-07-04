@@ -6,7 +6,7 @@ const fs = require("fs-extra");
 const path = require("path");
 
 /**
- * @classdesc   Perform Lightning Fast Deployments
+ * @classdesc   Fast Serverless deployments for large packages
  * @class       ServerlessPluginFastDeploy
  */
 class ServerlessPluginFastDeploy {
