@@ -147,7 +147,7 @@ the FastDeploy Lambda is 512MB, but this can be increased or decreased using the
 
 ## Acknowledgements
 A big thank you to [FidelLimited](https://github.com/FidelLimited/), I blatently plagiarized their WarmUp plugin for the 
-basis of the FastDeploy Lambda :-) As they say "Mimicry highest form of flattery".
+basis of the FastDeploy Lambda :-) As they say "Mimicry is the highest form of flattery".
 
 
 ## Contribute
