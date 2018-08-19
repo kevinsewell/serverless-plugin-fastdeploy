@@ -10,5 +10,5 @@ def handle(event_, context_):
 
     return {
         "statusCode": 200,
-        "body": json.dumps({"message": message_})
+        "body": json.dumps({"message": message_.upper()})
     }

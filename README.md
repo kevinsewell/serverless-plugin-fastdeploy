@@ -24,9 +24,9 @@ existing package on S3. So now when I deploy a change, I am sending a few KB acr
 
 y first attempt was to just use the latest existing deployment package on S3, unpack that and
 create a new package with the update files. This was a bit "slow", so now I create a base package which is the full 
-previous deployment package without the files described by the `custom.fastDelpoy.include` property. This means that I 
+previous deployment package without the files described by the `custom.fastDeploy.include` property. This means that I 
 can simply append the new files, resulting in an even faster deploy. The unfortunately side effect being that if you 
-change the `custom.fastDelpoy.include` property, you need to do a full deployment before doing your next FastDeploy.
+change the `custom.fastDeploy.include` property, you need to do a full deployment before doing your next FastDeploy.
 
 The creation of the base deployment package also means that the first FastDeploy will be slightly slower than subsequent
 deployments.
@@ -40,7 +40,7 @@ configured it via the `provider.deploymentBucket` property.
 #### IAM Role
 
 The FastDeploy Lambda requires the following permissions on the deployment bucket. Either this can be added to the 
-services default role, or you can create a new role and configure it via the `custom.fastDelpoy.role` property.
+services default role, or you can create a new role and configure it via the `custom.fastDeploy.role` property.
 
 #### Updates to CloudFormation configuration requires a full deployment
 Much like Serverless's function deployment feature, any updates to the CloudFormation stack requires a full deployment.  
@@ -79,7 +79,7 @@ sls fastdeploy
 
 ### Configuration
 
-The `custom.fastDelpoy.include` property describes which files to include in the update package, and exclude from the 
+The `custom.fastDeploy.include` property describes which files to include in the update package, and exclude from the 
 base package. This can be an array if you are just working in single module project, or an object if you are working with a 
 multi-module project.
 
@@ -163,7 +163,7 @@ resources:
 
 ## Cost
 Since we are deploying an additional Lambda, there are some neglible cost implications. The default memory allocated to 
-the FastDeploy Lambda is 512MB, but this can be increased or decreased using the `custom.fastDelpoy.memory` property.
+the FastDeploy Lambda is 512MB, but this can be increased or decreased using the `custom.fastDeploy.memory` property.
 
 ## Acknowledgements
 A big thank you to [FidelLimited](https://github.com/FidelLimited/), I blatently plagiarized their WarmUp plugin for the 
