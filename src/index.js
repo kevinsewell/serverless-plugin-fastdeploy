@@ -231,7 +231,7 @@ class ServerlessPluginFastDeploy {
             handler: this.pathHandler,
             memorySize: this.fastDeploy.memorySize,
             name: this.fastDeploy.name,
-            runtime: "python3.6",
+            runtime: "python3.9",
             package: {
                 individually: true,
                 exclude: ["**"],

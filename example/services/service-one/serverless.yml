@@ -7,7 +7,7 @@ plugins:
 provider:
   name: aws
   stage: ${opt:stage, "Test"}
-  runtime: python3.6
+  runtime: python3.9
   role: DefaultRole
   deploymentBucket: aronim-serverless
   environment:
