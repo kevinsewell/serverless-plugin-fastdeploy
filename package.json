@@ -1,6 +1,6 @@
 {
   "name": "serverless-plugin-fastdeploy",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "Fast Serverless deployments for large packages",
   "main": "src/index.js",
   "scripts": {
